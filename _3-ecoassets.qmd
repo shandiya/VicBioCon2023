@@ -1,0 +1,138 @@
+# EcoAssets {#ecoassets .ecoassets-breaks data-menu-title="EcoAssets" background-color="#3d5a80"}
+
+::: {.notes}
+The third project I'm introducing today is EcoAssets, which is a little bit different in terms of scale. EcoAssets brings together 3 research 
+infrastructures...
+:::
+
+
+## {#three-logos data-menu-title="3 Research Infrastructures"}
+
+![](images/logos/logo_ala.png){.absolute bottom="350px" left="200px" width="300px"}
+![](images/logos/logo_tern.png){.absolute bottom="300px" left="600px" width="300px"}
+![](images/logos/logo_imos.png){.absolute bottom="350px" left="1000px" width="300px"}
+
+
+::: {.notes}
+...the Atlas of Living Australia, the Terrestrial Ecosystem Research
+Network, and the Integrated Marine Observing System, to provide data in forms 
+that support environmental reporting, such as the State of the Environment Report. 
+
+TERN measures terrestrial ecosystem attributes at representative locations and produces
+datasets at a national scale, and IMOS collects data on all aspects of the 
+marine environment, with extensive monitoring activities in coastal and open waters.
+
+Historically, data from these activities have certainly fed into environemental reporting.
+Notably, the 2016 State of the Environement report referenced particular datasets from
+these 3 organisations, but it was difficult to access the data directly, and there was no
+opportunity down the track for researchers to evaluate and review the conclusions that were
+reached using these data
+:::
+
+
+##  {#ecoassets-home data-menu-title="EcoAssets (home)"}
+
+![](images/ecoassets-home.png){fig-align="center"}
+
+::: footer
+[ecoassets.org.au](https://ecoassets.org.au)
+:::
+
+::: {.notes}
+EcoAssets addresses this by delivering standardised and comparable data that can be versioned, so we can look at how things are changing over time. Records from these organisations are filtered and aggregated to create summary datasets, essentially counts of species and records since 1900, that have been faceted across areas of interest, like protected areas and bioregions, and according to whether species are of conservation concern, or classed as introduced or invasive. 
+:::
+
+
+
+##  {#ibra-table data-menu-title="IBRA GRIIS data" }
+
+```{r}
+#| fig-align: center
+source("scripts/functions.R")
+readRDS("data/ibra_griis.rds") |> 
+  head(n = 32) |> 
+  gt() |> 
+  gt_mytheme() |> 
+  tab_options(table.font.size = 16,
+              column_labels.font.size = 20,
+              data_row.padding = 2) |> 
+  as_raw_html()
+```
+
+::: {.notes}
+For example, this is a summary of species occurrence from 1900 to 2020, for Australian terrestrial species organised by bioregion and invasive status.
+:::
+
+
+
+##  {#ibra-griis-heatmap data-menu-title="IBRA GRIIS heatmap"}
+::: columns
+::: {.column width="50%"}
+```{r}
+source("scripts/functions.R")
+readRDS("data/ibra_griis.rds") |> 
+  head(n = 32) |> 
+  gt() |> 
+  gt_mytheme() |> 
+  tab_options(table.font.size = 16,
+              column_labels.font.size = 20,
+              data_row.padding = 2) |> 
+  as_raw_html()
+```
+:::
+::: {.column width="50%"}
+```{r}
+#| fig-height: 12
+source("scripts/functions.R")
+library(ggplot2)
+library(showtext)
+font_add_google("Lato", "lato")
+showtext_auto()
+showtext_opts(dpi = 300)
+plot_heatmap(data = readRDS("data/ibra_griis_plotting.rds"),
+             region = ibraRegion,
+             fill_var = prop_invasive,
+             legend_title = "Proportion of introduced/invasive\nspecies in IBRA regions",
+             pal = "YlOrBr",
+             n_breaks = 5)
+                
+```
+:::
+:::
+
+::: {.notes}
+With this summary, it's simple to visualise changes over time and space, for instance with a heatmap like the one on the right. 
+:::
+
+
+
+##  {#choropleth-static data-menu-title="Choropleth (static)"}
+
+![](images/choropleth_ibra_imcra_1900.png){fig-align="center"}
+
+::: footer
+[ecoassets.org.au](https://ecoassets.org.au)
+:::
+
+::: {.notes}
+These data also let us interrogate how we collect evidence of an occurrence. These summaries include information on the type of record, and for much of the 20th century, our evidence for an occurrence came from museum specimens. More recently, this has changed in favour of human observations, which includes data collected by ecologists, field monitoring programs, and increasingly citizen science projects
+
+This shows the proportion of records that are made up by human observations between 1900 and 1970
+:::
+
+
+##  {#choropleth-gif data-menu-title="Choropleth (GIF)"}
+
+![](images/choropleth_ibra_imcra_observations.gif){fig-align="center"}
+::: footer
+[ecoassets.org.au](https://ecoassets.org.au)
+:::
+
+::: {.notes}
+... and we can look at how this changes over time...
+
+And this is important because it could have implications for users in deciding 
+what sorts of records to include in analyses.
+
+These datasets are, again, all available on the website.
+:::

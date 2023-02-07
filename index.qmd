@@ -1,0 +1,51 @@
+---
+pagetitle: "ALA"
+format:
+  revealjs: 
+    theme: custom.scss
+    height: 900
+    width: 1600
+    highlight-style: a11y
+    code-line-numbers: false
+    code-copy: hover
+    menu: false
+editor: visual
+---
+
+##  {#title data-menu-title="Title" background-image="images/title_ridges.tiff"}
+
+[Continental-scale biodiversity data assessment using the Atlas of Living Australia]{.title} [Shandiya Balasubramaniam <br> {{< fa brands twitter >}} @ShandiyaB <br> VicBioCon2023]{.subtitle}
+
+##  {#acknowledgement data-menu-title="Acknowledgement"}
+
+[I acknowledge the Traditional Owners of the lands on which I live and work, the Wurundjeri People of the Kulin Nation, and pay my respects to Elders past and present. I recognise the spiritual and cultural significance of land, water, and all that is in the environment to Traditional Owners, and their continuing connection to Country.]{.acknowledgement}
+
+![](images/ack_ridges.tiff){.absolute bottom="10px" width="1500px"}
+
+##  {#ala-home .galah data-menu-title="ALA Home"}
+
+![](images/ala-home.png){fig-align="center"}
+
+::: footer
+[ala.org.au](https://www.ala.org.au)
+:::
+
+::: notes
+The Atlas of Living Australia was launched in 2010 and is now the most comprehensive dataset on Australian biodiversity, with over 100 million records sourced from more than 800 data providers, which includes collections like iNaturalist, BirdLife, and the Victorian Biodiversity Atlas. So it aggregates data from natural history collections, government departments, researchers, community groups, and individuals, and makes it all available online for anyone to access.
+:::
+
+{{< include _1-galah.qmd >}}
+
+{{< include _2-labs.qmd >}}
+
+{{< include _3-ecoassets.qmd >}}
+
+##  {#final data-menu-title="Final"}
+
+![](images/team.png){fig-align="center"} [<br> Shandiya Balasubramaniam <br> Data Analyst • Science & Decision Support • ALA <br> {{< fa envelope >}} shandiya.balasubramaniam\@csiro.au <br> {{< fa brands twitter >}} @ShandiyaB <br> {{< fa brands github >}} shandiya <br> <br> Slides: [my-slides-location]()]{.final}
+
+![](images/logos/corp_logos.png){fig-align="right" width="35%"}
+
+::: notes
+I'd like to acknowledge the rest of the science and decision support team - everything I've talked about today has been a joint effort. And if you'd like to take another look at anything, the link to the slides is there. Thank you. 
+:::

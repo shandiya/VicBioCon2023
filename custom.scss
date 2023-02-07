@@ -1,0 +1,143 @@
+/*-- scss:defaults --*/
+
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100;200;300;400;500;600&display=swap');
+
+
+// fonts
+$font-family-monospace: 'Fira Code', monospace;
+$font-family: 'League Spartan', sans-serif;
+$code-block-font-size: 0.6em;
+
+// colours
+$body-bg: #fffaf3;
+$body-color: #273b50;
+$link-color: #7E98A8;
+$code-block-bg: $body-bg;
+$code-block-border-color: $body-bg;
+$tabset-border-color: $body-color;
+
+
+/*-- scss:rules --*/
+
+.reveal .title {
+  font-family: 'League Spartan', sans-serif;
+  color: #a47823;
+  font-size: 1.8em;
+  font-weight: 200;
+  position: absolute;
+  bottom: 375px;
+  left: 250px;
+  text-align: right;
+}
+
+.reveal .subtitle {
+  font-family: 'League Spartan', sans-serif;
+  color: #273b50;
+  font-size: 1.2em;
+  font-weight: 200;
+  position: absolute;
+  bottom: 180px;
+  right: 10px;
+  text-align: right;
+}
+
+.reveal .acknowledgement {
+  font-family: 'League Spartan', sans-serif;
+  color: #a47823;
+  font-weight: 100;
+  font-style: italic;
+  position: absolute;
+  left: 60px;
+  right: 60px;
+  top: 180px;
+  text-align: justify;
+}
+
+.v-center-container {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  height: 60%;
+}
+
+.reveal pre code {
+  color: lighten($body-color, 10%);
+}
+
+.reveal .galah-breaks h1 {
+  font-family: 'Fira Code', monospace;
+  color: #f5b2d0;
+  font-weight: 200;
+  font-size: 4em;
+}
+
+.reveal .labs-breaks h1 {
+  font-family: 'Fira Code', monospace;
+  color: #eeecea;
+  font-weight: 200;
+  font-size: 4em;
+}
+
+.reveal .ecoassets-breaks h1 {
+  font-family: 'Fira Code', monospace;
+  color: #98c1d9;
+  font-weight: 200;
+  font-size: 4em;
+}
+
+.reveal .galah h2 {
+  font-family: 'League Spartan', sans-serif;
+  color: #a47823;
+  font-weight: 100;
+  font-size: 2.5em;
+}
+
+.reveal .galah h4 {
+  font-family: 'League Spartan', sans-serif;
+  color: #273b50;
+  font-weight: 200;
+  font-size: 1.5em;
+  position: absolute;
+  top: 400px;
+  left: 50px;
+}
+
+.reveal .final {
+  font-family: 'League Spartan', sans-serif;
+  color: #273b50;
+  font-weight: 200;
+  font-size: 1em;
+}
+
+.reveal .links {
+  font-family: 'Fira Code', monospace;
+  font-weight: 200;
+  font-size: 1.5em;
+  position: absolute;
+  top: 150px;
+}
+
+.panel-tabset-tabby {
+  border-color: $body-bg !important;
+}
+
+.panel-tabset-tabby a {
+  color: $body-bg;
+  font-family: 'Fira Code', monospace;
+  font-weight: 400;
+  font-size: 0.7em;
+  background-color: $link-color;
+  border-radius: 15px 15px 0 0;
+  border-bottom-color: $body-color;
+}
+
+.panel-tabset [role=tab][aria-selected=true] {
+  background-color: $body-color;  
+  border-bottom-color: $body-color;
+}
+
+
+
+
+

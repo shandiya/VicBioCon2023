@@ -1,0 +1,46 @@
+# ALA labs {#labs .labs-breaks data-menu-title="ALA Labs" background-color="#465106"}
+
+::: {.notes}
+The second project I'd like to draw your attention to is ALA labs...
+:::
+
+
+
+##  {#labs-site data-menu-title="Labs Site"}
+
+![](images/ala_labs.png){fig-align="center"}
+
+::: footer
+[labs.ala.org.au](https://labs.ala.org.au)
+:::
+
+::: {.notes}
+...which is a resource for learning how to do things with data from the Atlas. The idea is to showcase and share tools for open, reproducible workflows 
+:::
+
+
+
+##  {#hulls data-menu-title="Convex & Alpha Hulls"}
+![](videos/alpha-hulls.mov){fig-align="center"}
+
+::: footer
+[labs.ala.org.au](https://labs.ala.org.au)
+:::
+
+::: {.notes}
+For example, Fonti and Margot wrote an article on convex and alpha hulls, which can be good options for visualising species distributions where there are very few existing observations. Recently, this method was used to estimate the impact of the 2020 bushfires on invertebrates in southern Australia. In this post, they walk though the process of downloading records of data-deficient species from the Atlas, and the steps involved in predicting species distributions using convex and alpha hulls, which can be a useful metric for conservation planning.
+:::
+
+
+
+##  {#labs-posts data-menu-title="Labs Posts"}
+
+![](videos/labs-posts.mov){fig-align="center"}
+
+::: footer
+[labs.ala.org.au](https://labs.ala.org.au)
+:::
+
+::: {.notes}
+As you can see here, the science team at the Atlas have written articles describing a range of data visualisations and ecological analyses, and we're continually adding to these. And if there's something you think we should write about, let us know!
+:::
