@@ -1,0 +1,4 @@
+- source: index.qmd
+  quarto-pub:
+    - id: 8efed31a-f922-4dc8-be10-a71858f13e17
+      url: 'https://quartopub.com/sites/shandiya/index'

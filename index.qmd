@@ -42,7 +42,7 @@ The Atlas of Living Australia was launched in 2010 and is now the most comprehen
 
 ##  {#final data-menu-title="Final"}
 
-![](images/team.png){fig-align="center"} [<br> Shandiya Balasubramaniam <br> Data Analyst • Science & Decision Support • ALA <br> {{< fa envelope >}} shandiya.balasubramaniam\@csiro.au <br> {{< fa brands twitter >}} @ShandiyaB <br> {{< fa brands github >}} shandiya <br> <br> Slides: [my-slides-location]()]{.final}
+![](images/team.png){fig-align="center"} [<br> Shandiya Balasubramaniam <br> Data Analyst • Science & Decision Support • ALA <br> {{< fa envelope >}} shandiya.balasubramaniam\@csiro.au <br> {{< fa brands twitter >}} @ShandiyaB <br> {{< fa brands github >}} shandiya <br> <br> Slides: [shandiya.quarto.pub/vicbiocon2023](https://shandiya.quarto.pub/vicbiocon2023/)]{.final}
 
 ![](images/logos/corp_logos.png){fig-align="right" width="35%"}
 
