@@ -106,13 +106,7 @@ With this summary, it's simple to visualise changes over time and space, for ins
 
 
 
-##  {#choropleth-static data-menu-title="Choropleth (static)"}
-
-![](images/choropleth_ibra_imcra_1900.png){fig-align="center"}
-
-::: footer
-[ecoassets.org.au](https://ecoassets.org.au)
-:::
+##  {#choropleth-static data-menu-title="Choropleth (static)" background-image="images/choropleth_ibra_imcra_1900.png" background-size=contain}
 
 ::: {.notes}
 These data also let us interrogate how we collect evidence of an occurrence. These summaries include information on the type of record, and for much of the 20th century, our evidence for an occurrence came from museum specimens. More recently, this has changed in favour of human observations, which includes data collected by ecologists, field monitoring programs, and increasingly citizen science projects
@@ -121,18 +115,26 @@ This shows the proportion of records that are made up by human observations betw
 :::
 
 
-##  {#choropleth-gif data-menu-title="Choropleth (GIF)"}
 
-![](images/choropleth_ibra_imcra_observations.gif){fig-align="center"}
-::: footer
+##  {#choropleth-gif data-menu-title="Choropleth (GIF)" background-image="images/choropleth_ibra_imcra_observations.gif" background-size=contain}
+
+::: {.notes}
+... and we can look at how this changes over time... And this is important because it could have implications for users in deciding what sorts of records to include in analyses.
+:::
+
+
+
+##  {#ecoassets-url .links data-menu-title="EcoAssets URL"}
+
+::: {.columns .v-center-container}
+::: {.column width="5%"}
+:::
+
+::: {.column width="50%"}
 [ecoassets.org.au](https://ecoassets.org.au)
+:::
 :::
 
 ::: {.notes}
-... and we can look at how this changes over time...
-
-And this is important because it could have implications for users in deciding 
-what sorts of records to include in analyses.
-
-These datasets are, again, all available on the website.
+And these datasets are all available on the website
 :::
