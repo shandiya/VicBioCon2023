@@ -42,8 +42,7 @@ ggplot(gastropoda,
   theme(plot.margin = margin(2, 0, 2, 0, "cm"),
         plot.background = element_rect(fill = "#E9EEF5"))
 
-ggsave("images/title_ridges.tiff",
-       device = "tiff",
+ggsave("images/title_ridges.png",
        width = 5, 
        height = 4, 
        units = "in")
@@ -78,8 +77,7 @@ ggplot(eyr,
   theme(plot.margin = margin(0.5, 0, 0, 0, "cm"),
         plot.background = element_rect(fill = "#fffaf3", colour = "NA"))
 
-ggsave("images/ack_ridges.tiff",
-       device = "tiff",
+ggsave("images/ack_ridges.png",
        width = 6, 
        height = 1.5, 
        units = "in")
@@ -123,8 +121,7 @@ st_read("data/metro_region.shp") |>
   geom_sf(fill = NA, colour = "#7e98a8") + 
   theme_void()
 
-ggsave("images/metro_outline.tiff", 
-       device = "tiff", 
+ggsave("images/metro_outline.png", 
        width = 2, 
        height = 2, 
        units = "in")
@@ -250,8 +247,7 @@ ggplot() +
   coord_sf() +
   theme_void()
 
-ggsave("images/whale_map.tiff", 
-       device = "tiff",
+ggsave("images/whale_map.png", 
        width = 15, 
        height = 10, 
        units = "cm")

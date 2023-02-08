@@ -12,7 +12,7 @@ format:
 editor: visual
 ---
 
-##  {#title data-menu-title="Title" background-image="images/title_ridges.tiff"}
+##  {#title data-menu-title="Title" background-image="images/title_ridges.png"}
 
 [Continental-scale biodiversity data assessment using the Atlas of Living Australia]{.title} [Shandiya Balasubramaniam <br> {{< fa brands twitter >}} @ShandiyaB <br> VicBioCon2023]{.subtitle}
 
@@ -20,7 +20,7 @@ editor: visual
 
 [I acknowledge the Traditional Owners of the lands on which I live and work, the Wurundjeri People of the Kulin Nation, and pay my respects to Elders past and present. I recognise the spiritual and cultural significance of land, water, and all that is in the environment to Traditional Owners, and their continuing connection to Country.]{.acknowledgement}
 
-![](images/ack_ridges.tiff){.absolute bottom="10px" width="1500px"}
+![](images/ack_ridges.png){.absolute bottom="10px" width="1500px"}
 
 ##  {#ala-home .galah data-menu-title="ALA Home"}
 

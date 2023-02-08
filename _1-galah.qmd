@@ -10,8 +10,8 @@ biodiversity data in the ALA. The majority of these data consist of species occu
 ##  {#sp-occ .galah data-menu-title="Species Occurrence"}
 
 #### 2020-09-23
-![](images/whale.tiff){.absolute top="20px" left="380px" width="700px"}
-![](images/whale_map.tiff){.absolute bottom="200px" left="1000px" height="500px"}
+![](images/whale.png){.absolute top="20px" left="380px" width="700px"}
+![](images/whale_map.png){.absolute bottom="200px" left="1000px" height="500px"}
 
 ::: {.notes}
 ...so, evidence of a taxon in a particular time and place. It's possible to get these records through the website, but one of the main advantages of using {galah} is that it makes the query reproducible. It's also implemented in both R and Python- the R version currently has more functionality but a fully-fledged Python release is going to be happening very soon. 
@@ -101,10 +101,10 @@ galah.atlas_counts(taxa="pardalotus")
 ```
 :::
 
-![](images/pardalotes/spotted.tiff){.absolute bottom="50px" right="100px" height="150px"}
-![](images/pardalotes/forty-spotted.tiff){.absolute bottom="50px" right="300px" height="150px"}
-![](images/pardalotes/striated.tiff){.absolute bottom="50px" right="500px" height="150px"}
-![](images/pardalotes/red-browed.tiff){.absolute bottom="50px" right="700px" height="150px"}
+![](images/pardalotes/spotted.png){.absolute bottom="50px" right="100px" height="150px"}
+![](images/pardalotes/forty-spotted.png){.absolute bottom="50px" right="300px" height="150px"}
+![](images/pardalotes/striated.png){.absolute bottom="50px" right="500px" height="150px"}
+![](images/pardalotes/red-browed.png){.absolute bottom="50px" right="700px" height="150px"}
 :::
 :::
 
@@ -153,9 +153,9 @@ galah.atlas_counts(
 ```
 :::
 
-![](images/pardalotes/spotted.tiff){.absolute bottom="50px" right="100px" height="150px"}
-![](images/pardalotes/forty-spotted.tiff){.absolute bottom="50px" right="300px" height="150px"}
-![](images/pardalotes/striated.tiff){.absolute bottom="50px" right="500px" height="150px"}
+![](images/pardalotes/spotted.png){.absolute bottom="50px" right="100px" height="150px"}
+![](images/pardalotes/forty-spotted.png){.absolute bottom="50px" right="300px" height="150px"}
+![](images/pardalotes/striated.png){.absolute bottom="50px" right="500px" height="150px"}
 :::
 :::
 
@@ -205,9 +205,9 @@ galah.atlas_counts(
 ```
 :::
 
-![](images/pardalotes/spotted-flip.tiff){.absolute bottom="50px" left="100px" height="150px"}
-![](images/pardalotes/forty-spotted-flip.tiff){.absolute bottom="50px" left="300px" height="150px"}
-![](images/pardalotes/striated-flip.tiff){.absolute bottom="50px" left="500px" height="150px"}
+![](images/pardalotes/spotted-flip.png){.absolute bottom="50px" left="100px" height="150px"}
+![](images/pardalotes/forty-spotted-flip.png){.absolute bottom="50px" left="300px" height="150px"}
+![](images/pardalotes/striated-flip.png){.absolute bottom="50px" left="500px" height="150px"}
 :::
 :::
 
@@ -256,9 +256,9 @@ galah.atlas_occurrences(
 ```
 :::
 
-![](images/pardalotes/spotted-flip.tiff){.absolute bottom="50px" left="100px" height="150px"}
-![](images/pardalotes/forty-spotted-flip.tiff){.absolute bottom="50px" left="300px" height="150px"}
-![](images/pardalotes/striated-flip.tiff){.absolute bottom="50px" left="500px" height="150px"}
+![](images/pardalotes/spotted-flip.png){.absolute bottom="50px" left="100px" height="150px"}
+![](images/pardalotes/forty-spotted-flip.png){.absolute bottom="50px" left="300px" height="150px"}
+![](images/pardalotes/striated-flip.png){.absolute bottom="50px" left="500px" height="150px"}
 :::
 :::
 
@@ -314,9 +314,9 @@ galah.atlas_occurrences(
 ```
 :::
 
-![](images/pardalotes/spotted-flip.tiff){.absolute bottom="50px" left="100px" height="150px"}
-![](images/pardalotes/forty-spotted-flip.tiff){.absolute bottom="50px" left="300px" height="150px"}
-![](images/pardalotes/striated-flip.tiff){.absolute bottom="50px" left="500px" height="150px"}
+![](images/pardalotes/spotted-flip.png){.absolute bottom="50px" left="100px" height="150px"}
+![](images/pardalotes/forty-spotted-flip.png){.absolute bottom="50px" left="300px" height="150px"}
+![](images/pardalotes/striated-flip.png){.absolute bottom="50px" left="500px" height="150px"}
 :::
 :::
 
@@ -353,7 +353,7 @@ galah_call() |>
 
 ```
 
-![](images/metro_outline.tiff){.absolute bottom="10px" right="10px"}
+![](images/metro_outline.png){.absolute bottom="10px" right="10px"}
 
 ### Python
 Watch this space!

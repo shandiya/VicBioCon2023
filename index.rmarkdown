@@ -1,0 +1,628 @@
+---
+pagetitle: "ALA"
+format:
+  revealjs: 
+    theme: custom.scss
+    height: 900
+    width: 1600
+    highlight-style: a11y
+    code-line-numbers: false
+    code-copy: hover
+    menu: false
+editor: visual
+---
+
+
+##  {#title data-menu-title="Title" background-image="images/title_ridges.png"}
+
+[Continental-scale biodiversity data assessment using the Atlas of Living Australia]{.title} [Shandiya Balasubramaniam <br> {{< fa brands twitter >}} @ShandiyaB <br> VicBioCon2023]{.subtitle}
+
+##  {#acknowledgement data-menu-title="Acknowledgement"}
+
+[I acknowledge the Traditional Owners of the lands on which I live and work, the Wurundjeri People of the Kulin Nation, and pay my respects to Elders past and present. I recognise the spiritual and cultural significance of land, water, and all that is in the environment to Traditional Owners, and their continuing connection to Country.]{.acknowledgement}
+
+![](images/ack_ridges.png){.absolute bottom="10px" width="1500px"}
+
+##  {#ala-home .galah data-menu-title="ALA Home"}
+
+![](images/ala-home.png){fig-align="center"}
+
+::: footer
+[ala.org.au](https://www.ala.org.au)
+:::
+
+::: notes
+The Atlas of Living Australia was launched in 2010 and is now the most comprehensive dataset on Australian biodiversity, with over 100 million records sourced from more than 800 data providers, which includes collections like iNaturalist, BirdLife, and the Victorian Biodiversity Atlas. So it aggregates data from natural history collections, government departments, researchers, community groups, and individuals, and makes it all available online for anyone to access.
+:::
+
+# {galah} {#galah .galah-breaks data-menu-title="galah" background-color="#e9317f"}
+
+::: {.notes}
+The first project I wanted to introduce is the {galah} package, which acts as an interface to the 
+biodiversity data in the ALA. The majority of these data consist of species occurrence records...
+:::
+
+
+
+##  {#sp-occ .galah data-menu-title="Species Occurrence"}
+
+#### 2020-09-23
+![](images/whale.png){.absolute top="20px" left="380px" width="700px"}
+![](images/whale_map.tiff){.absolute bottom="200px" left="1000px" height="500px"}
+
+::: {.notes}
+...so, evidence of a taxon in a particular time and place. It's possible to get these records through the website, but one of the main advantages of using {galah} is that it makes the query reproducible. It's also implemented in both R and Python- the R version currently has more functionality but a fully-fledged Python release is going to be happening very soon. 
+:::
+
+## Counts of records {#counts .galah data-menu-title="atlas_counts()"}
+
+::: {.columns .v-center-container}
+::: {.column width="100%"}
+::: {.panel-tabset}
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+library(galah)
+galah_config(email = Sys.getenv("email"), verbose = FALSE)
+```
+
+### R
+```{r}
+#| echo: true
+#| eval: true
+#| code-line-numbers: "|1|3|4|"
+#| output-location: column-fragment
+
+library(galah)
+
+galah_call() |>
+  atlas_counts()
+
+```
+
+### Python
+```{python}
+#| echo: true
+#| eval: false
+#| code-line-numbers: "|"
+
+import galah
+galah.atlas_counts()
+
+```
+:::
+:::
+:::
+
+::: {.notes}
+I'll run through some examples using the R syntax, but the Python code is here in this tab, and these slides are available online. 
+
+So, start by loading the package, and every query begins with galah_call(), 
+which tells the API what we want. A lot of the syntax is similar to using dplyr, so if you're familiar with the tidyverse this will be quite straightforward. The next line specifies what we want - here, atlas_counts() will retrieve counts of records. Voila, we're told that there are just over 113 million records in the ALA. But we don't always want everything, everywhere, all at once. So here are some functions that allow us to construct more specific queries  
+:::
+
+
+
+## Identify taxa {#identify .galah data-menu-title="galah_identify()"}
+
+::: {.columns .v-center-container}
+::: {.column width="100%"}
+::: {.panel-tabset}
+
+### R
+```{r}
+#| echo: true
+#| eval: true
+#| code-line-numbers: "|4|"
+#| output-location: column-fragment
+
+library(galah)
+
+galah_call() |>
+  galah_identify("pardalotus") |>
+  atlas_counts()
+
+```
+
+### Python
+```{python}
+#| echo: true
+#| eval: false
+#| code-line-numbers: "|"
+
+import galah
+galah.atlas_counts(taxa="pardalotus")
+
+```
+:::
+
+![](images/pardalotes/spotted.tiff){.absolute bottom="50px" right="100px" height="150px"}
+![](images/pardalotes/forty-spotted.tiff){.absolute bottom="50px" right="300px" height="150px"}
+![](images/pardalotes/striated.tiff){.absolute bottom="50px" right="500px" height="150px"}
+![](images/pardalotes/red-browed.tiff){.absolute bottom="50px" right="700px" height="150px"}
+:::
+:::
+
+::: {.notes}
+galah_identify() lets us specify one or more taxa - here, I've asked for the 
+genus pardalotus. Over a million pardalote records
+:::
+
+
+
+## Filter records {#filter .galah data-menu-title="galah_filter()"}
+
+::: {.columns .v-center-container}
+::: {.column width="100%"}
+::: {.panel-tabset}
+
+### R
+```{r}
+#| echo: true
+#| eval: true
+#| code-line-numbers: "|5-6|"
+#| output-location: column-fragment
+
+library(galah)
+
+galah_call() |>
+  galah_identify("pardalotus") |>
+  galah_filter(year >= 2020, 
+               stateProvince == "Tasmania") |> 
+  atlas_counts()
+
+```
+
+### Python
+```{python}
+#| echo: true
+#| eval: false
+#| code-line-numbers: "|"
+
+import galah
+galah.atlas_counts(
+    taxa="pardalotus",
+    filters=["year >= 2020", "stateProvince == Tasmania"]
+)
+
+```
+:::
+
+![](images/pardalotes/spotted.tiff){.absolute bottom="50px" right="100px" height="150px"}
+![](images/pardalotes/forty-spotted.tiff){.absolute bottom="50px" right="300px" height="150px"}
+![](images/pardalotes/striated.tiff){.absolute bottom="50px" right="500px" height="150px"}
+:::
+:::
+
+::: {.notes}
+galah_filter() applies filters to different fields - here, I've specified records 
+from 2020 onwards, from Tasmania. Down to 7000 records. But maybe you want to know if there are different species in there, or if the counts change over the years...
+:::
+
+
+## Group counts {#group .galah data-menu-title="galah_group_by()"}
+
+::: {.columns .v-center-container}
+::: {.column width="100%"}
+::: {.panel-tabset}
+
+### R
+```{r}
+#| echo: true
+#| eval: true
+#| code-line-numbers: "|7|"
+#| output-location: column-fragment
+
+library(galah)
+
+galah_call() |>
+  galah_identify("pardalotus") |>
+  galah_filter(year >= 2020, 
+               stateProvince == "Tasmania") |> 
+  galah_group_by(year, species) |>
+  atlas_counts()
+
+```
+
+### Python
+```{python}
+#| echo: true
+#| eval: false
+#| code-line-numbers: "|"
+
+import galah
+galah.atlas_counts(
+    taxa="pardalotus",
+    filters=["year >= 2020", "stateProvince == Tasmania"],
+    group_by=["year","species"]
+)
+
+```
+:::
+
+![](images/pardalotes/spotted-flip.tiff){.absolute bottom="50px" left="100px" height="150px"}
+![](images/pardalotes/forty-spotted-flip.tiff){.absolute bottom="50px" left="300px" height="150px"}
+![](images/pardalotes/striated-flip.tiff){.absolute bottom="50px" left="500px" height="150px"}
+:::
+:::
+
+::: {.notes}
+group_by() lets you group counts by the fields you specify - here, year and species. We can see that there are 3 species, and there's quite a difference in the number of records.
+:::
+
+
+
+## Download occurrences {#download .galah data-menu-title="atlas_occurrences()"}
+
+::: {.columns .v-center-container}
+::: {.column width="100%"}
+::: {.panel-tabset}
+
+### R
+```{r}
+#| echo: true
+#| eval: true
+#| code-line-numbers: "|2,8|"
+#| output-location: column-fragment
+
+library(galah)
+galah_config(email = "shandiya.b@gmail.com")
+
+galah_call() |>
+  galah_identify("pardalotus") |>
+  galah_filter(year >= 2020, 
+               stateProvince == "Tasmania") |> 
+  atlas_occurrences()
+```
+
+### Python 
+```{python}
+#| echo: true
+#| eval: false
+#| code-line-numbers: "|"
+
+import galah
+galah.galah_config(email="shandiya.b@gmail.com")
+galah.atlas_occurrences(
+    taxa="pardalotus",
+    filters=["year >= 2020", "stateProvince == Tasmania"]
+)
+
+```
+:::
+
+![](images/pardalotes/spotted-flip.tiff){.absolute bottom="50px" left="100px" height="150px"}
+![](images/pardalotes/forty-spotted-flip.tiff){.absolute bottom="50px" left="300px" height="150px"}
+![](images/pardalotes/striated-flip.tiff){.absolute bottom="50px" left="500px" height="150px"}
+:::
+:::
+
+::: {.notes}
+To download these records and have a look at them in more detail, 
+we can switch from atlas_counts() to atlas_occurrences(). Downloading records also
+requires that we provide the email we used to register with the ALA. This is a bit truncated, but we can see that the download consists of 7000+ rows and 8 columns. 
+:::
+
+
+
+## Select fields {#select .galah data-menu-title="galah_select()"}
+
+::: {.columns .v-center-container}
+::: {.column width="100%"}
+::: {.panel-tabset}
+
+### R
+```{r}
+#| echo: true
+#| eval: true
+#| code-line-numbers: "|8-10|"
+#| output-location: column-fragment
+
+library(galah)
+galah_config(email = "shandiya.b@gmail.com")
+
+galah_call() |>
+  galah_identify("pardalotus") |>
+  galah_filter(year >= 2020, 
+               stateProvince == "Tasmania") |> 
+  galah_select(species, 
+               year, 
+               dataResourceName) |> 
+  atlas_occurrences()
+
+```
+
+### Python 
+```{python}
+#| echo: true
+#| eval: false
+#| code-line-numbers: "|"
+
+import galah
+galah.galah_config(email="shandiya.b@gmail.com")
+galah.atlas_occurrences(
+    taxa="pardalotus",
+    filters=["year >= 2020", "stateProvince == Tasmania"],
+    fields=["species","year","decimalLatitude","decimalLongitude"]
+)
+
+```
+:::
+
+![](images/pardalotes/spotted-flip.tiff){.absolute bottom="50px" left="100px" height="150px"}
+![](images/pardalotes/forty-spotted-flip.tiff){.absolute bottom="50px" left="300px" height="150px"}
+![](images/pardalotes/striated-flip.tiff){.absolute bottom="50px" left="500px" height="150px"}
+:::
+:::
+
+::: {.notes}
+We might not want all the columns that are included in the default download, or we might want some different ones; we can specify this with galah_select() - here, we have records with information about species, year, and the data provider. 
+:::
+
+
+
+## Geolocate {#geolocate .galah data-menu-title="galah_geolocate()"}
+
+::: {.columns .v-center-container}
+::: {.column width="100%"}
+::: {.panel-tabset}
+
+### R
+```{r}
+#| echo: true
+#| eval: true
+#| code-line-numbers: "|1-2|4-6|8-11|"
+#| output-location: column-fragment
+
+library(galah)
+library(sf)
+
+melb <- st_read("data/metro_region.shp", 
+                quiet = TRUE) |> 
+  st_simplify(dTolerance = 1000)
+
+galah_call() |> 
+  galah_identify("pardalotus") |> 
+  galah_geolocate(melb) |> 
+  atlas_counts()
+
+```
+
+![](images/metro_outline.png){.absolute bottom="10px" right="10px"}
+
+### Python
+Watch this space!
+:::
+:::
+:::
+
+::: {.notes}
+{galah} also lets you search within a bespoke location; with galah_geolocate, you 
+can provide a shapefile, well known text string, bounding box, or simple features object. In this example here, we load the {sf} package, then read in a shapefile of the melbourne metro region. Then it's' just a case of providing this as an argument to galah_geolocate, and we have 93 thousand pardalotes ever recorded in Melbourne. 
+:::
+
+
+
+##  {#galah-url .links data-menu-title="{galah} URL"}
+
+::: {.columns .v-center-container}
+::: {.column width="10%"}
+:::
+
+::: {.column width="15%"}
+![](images/logos/galah_logo.png)
+:::
+
+::: {.column width="50%"}
+[galah.ala.org.au](https://galah.ala.org.au)
+:::
+:::
+
+::: {.notes}
+This is just some of the functionality of the package, there's lots of other cool 
+things that you can do with it, like apply data quality profiles, or query other 
+living atlases, and that's all documented on the website. 
+:::
+
+# ALA labs {#labs .labs-breaks data-menu-title="ALA Labs" background-color="#465106"}
+
+::: {.notes}
+The second project I'd like to draw your attention to is ALA labs...
+:::
+
+
+
+##  {#labs-site data-menu-title="Labs Site"}
+
+![](images/ala_labs.png){fig-align="center"}
+
+::: footer
+[labs.ala.org.au](https://labs.ala.org.au)
+:::
+
+::: {.notes}
+...which is a resource for learning how to do things with data from the Atlas. The idea is to showcase and share tools for open, reproducible workflows 
+:::
+
+
+
+##  {#hulls data-menu-title="Convex & Alpha Hulls"}
+![](videos/alpha-hulls.mov){fig-align="center"}
+
+::: footer
+[labs.ala.org.au](https://labs.ala.org.au)
+:::
+
+::: {.notes}
+For example, Fonti and Margot wrote an article on convex and alpha hulls, which can be good options for visualising species distributions where there are very few existing observations. Recently, this method was used to estimate the impact of the 2020 bushfires on invertebrates in southern Australia. In this post, they walk though the process of downloading records of data-deficient species from the Atlas, and the steps involved in predicting species distributions using convex and alpha hulls, which can be a useful metric for conservation planning.
+:::
+
+
+
+##  {#labs-posts data-menu-title="Labs Posts"}
+
+![](videos/labs-posts.mov){fig-align="center"}
+
+::: footer
+[labs.ala.org.au](https://labs.ala.org.au)
+:::
+
+::: {.notes}
+As you can see here, the science team at the Atlas have written articles describing a range of data visualisations and ecological analyses, and we're continually adding to these. And if there's something you think we should write about, let us know!
+:::
+
+# EcoAssets {#ecoassets .ecoassets-breaks data-menu-title="EcoAssets" background-color="#3d5a80"}
+
+::: {.notes}
+The third project I'm introducing today is EcoAssets, which is a little bit different in terms of scale. EcoAssets brings together 3 research 
+infrastructures...
+:::
+
+
+## {#three-logos data-menu-title="3 Research Infrastructures"}
+
+![](images/logos/logo_ala.png){.absolute bottom="350px" left="200px" width="300px"}
+![](images/logos/logo_tern.png){.absolute bottom="300px" left="600px" width="300px"}
+![](images/logos/logo_imos.png){.absolute bottom="350px" left="1000px" width="300px"}
+
+
+::: {.notes}
+...the Atlas of Living Australia, the Terrestrial Ecosystem Research
+Network, and the Integrated Marine Observing System, to provide data in forms 
+that support environmental reporting, such as the State of the Environment Report. 
+
+TERN measures terrestrial ecosystem attributes at representative locations and produces
+datasets at a national scale, and IMOS collects data on all aspects of the 
+marine environment, with extensive monitoring activities in coastal and open waters.
+
+Historically, data from these activities have certainly fed into environemental reporting.
+Notably, the 2016 State of the Environement report referenced particular datasets from
+these 3 organisations, but it was difficult to access the data directly, and there was no
+opportunity down the track for researchers to evaluate and review the conclusions that were
+reached using these data
+:::
+
+
+##  {#ecoassets-home data-menu-title="EcoAssets (home)"}
+
+![](images/ecoassets-home.png){fig-align="center"}
+
+::: footer
+[ecoassets.org.au](https://ecoassets.org.au)
+:::
+
+::: {.notes}
+EcoAssets addresses this by delivering standardised and comparable data that can be versioned, so we can look at how things are changing over time. Records from these organisations are filtered and aggregated to create summary datasets, essentially counts of species and records since 1900, that have been faceted across areas of interest, like protected areas and bioregions, and according to whether species are of conservation concern, or classed as introduced or invasive. 
+:::
+
+
+
+##  {#ibra-table data-menu-title="IBRA GRIIS data" }
+
+```{r}
+#| fig-align: center
+source("scripts/functions.R")
+readRDS("data/ibra_griis.rds") |> 
+  head(n = 32) |> 
+  gt() |> 
+  gt_mytheme() |> 
+  tab_options(table.font.size = 16,
+              column_labels.font.size = 20,
+              data_row.padding = 2) |> 
+  as_raw_html()
+```
+
+::: {.notes}
+For example, this is a summary of species occurrence from 1900 to 2020, for Australian terrestrial species organised by bioregion and invasive status.
+:::
+
+
+
+##  {#ibra-griis-heatmap data-menu-title="IBRA GRIIS heatmap"}
+::: columns
+::: {.column width="50%"}
+```{r}
+source("scripts/functions.R")
+readRDS("data/ibra_griis.rds") |> 
+  head(n = 32) |> 
+  gt() |> 
+  gt_mytheme() |> 
+  tab_options(table.font.size = 16,
+              column_labels.font.size = 20,
+              data_row.padding = 2) |> 
+  as_raw_html()
+```
+:::
+::: {.column width="50%"}
+```{r}
+#| fig-height: 12
+source("scripts/functions.R")
+library(ggplot2)
+library(showtext)
+font_add_google("Lato", "lato")
+showtext_auto()
+showtext_opts(dpi = 300)
+plot_heatmap(data = readRDS("data/ibra_griis_plotting.rds"),
+             region = ibraRegion,
+             fill_var = prop_invasive,
+             legend_title = "Proportion of introduced/invasive\nspecies in IBRA regions",
+             pal = "YlOrBr",
+             n_breaks = 5)
+                
+```
+:::
+:::
+
+::: {.notes}
+With this summary, it's simple to visualise changes over time and space, for instance with a heatmap like the one on the right. 
+:::
+
+
+
+##  {#choropleth-static data-menu-title="Choropleth (static)" background-image="images/choropleth_ibra_imcra_1900.png" background-size=contain}
+
+::: {.notes}
+These data also let us interrogate how we collect evidence of an occurrence. These summaries include information on the type of record, and for much of the 20th century, our evidence for an occurrence came from museum specimens. More recently, this has changed in favour of human observations, which includes data collected by ecologists, field monitoring programs, and increasingly citizen science projects
+
+This shows the proportion of records that are made up by human observations between 1900 and 1970
+:::
+
+
+
+##  {#choropleth-gif data-menu-title="Choropleth (GIF)" background-image="images/choropleth_ibra_imcra_observations.gif" background-size=contain}
+
+::: {.notes}
+... and we can look at how this changes over time... And this is important because it could have implications for users in deciding what sorts of records to include in analyses.
+:::
+
+
+
+##  {#ecoassets-url .links data-menu-title="EcoAssets URL"}
+
+::: {.columns .v-center-container}
+::: {.column width="5%"}
+:::
+
+::: {.column width="50%"}
+[ecoassets.org.au](https://ecoassets.org.au)
+:::
+:::
+
+::: {.notes}
+And these datasets are all available on the website
+:::
+
+
+
+##  {#final data-menu-title="Final"}
+
+![](images/team.png){fig-align="center"} [<br> Shandiya Balasubramaniam <br> Data Analyst • Science & Decision Support • ALA <br> {{< fa envelope >}} shandiya.balasubramaniam\@csiro.au <br> {{< fa brands twitter >}} @ShandiyaB <br> {{< fa brands github >}} shandiya <br> <br> Slides: [shandiya.quarto.pub/vicbiocon2023](https://shandiya.quarto.pub/vicbiocon2023/)]{.final}
+
+![](images/logos/corp_logos.png){fig-align="right" width="35%"}
+
+::: notes
+I'd like to acknowledge the rest of the science and decision support team - everything I've talked about today has been a joint effort. And if you'd like to take another look at anything, the link to the slides is there. Thank you. 
+:::
+
